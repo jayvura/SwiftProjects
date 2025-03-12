@@ -42,8 +42,8 @@ struct ContentView: View {
                             flagTapped(number)
                         } label: {
                             Image(countries[number])
-                                .clipShape(.capsule
-                                           // RoundedRectangle(cornerRadius: 5)
+                                .clipShape(
+                                           RoundedRectangle(cornerRadius: 5)
                                 )
                                 .shadow(radius: 5)
                         }
