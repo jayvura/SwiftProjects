@@ -19,7 +19,13 @@ struct ContentView: View {
     
     
     var body: some View {
+        Button("Start Game") {
+            startGame()
+                
+        }
+        .font(.largeTitle)
         NavigationStack {
+            
             List {
                 Section {
                     TextField("Enter your word", text: $newWord)
@@ -48,7 +54,7 @@ struct ContentView: View {
     
     func addNewWord() {
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-        guard answer.count > 3 && newWord != rootWord else { return }
+        guard answer.count > 2 && newWord != rootWord else { return }
         guard isOriginal(word: answer) else {
             wordError(title: "Word used already", message: "Be more original")
             return
@@ -73,6 +79,7 @@ struct ContentView: View {
     }
     
     func startGame() {
+        usedWords = []
         
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             if let startWords = try? String(contentsOf: startWordsURL, encoding: .utf8) {
